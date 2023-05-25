@@ -3,7 +3,15 @@ import './App.css'
 import { Header } from './components/Header'
 
 import { FullPost, Login, Home, Registration ,AddPost} from './pages/index'
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { authMe } from './redux/slices/auth';
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authMe())
+  }, [dispatch]);
+
   return (
 
     <>

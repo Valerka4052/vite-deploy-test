@@ -7,12 +7,11 @@ import { Link } from "react-router-dom";
 export const Home = () => {
     const { items } = useSelector(state => state.posts.posts);
     console.log(items);
-  
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(ferchPosts())
-        }, [dispatch]);
-    if(!items) return <h1>Loading...</h1>
+        dispatch(ferchPosts());
+    }, [dispatch]);
+    if (!items) return <h1>Loading...</h1>
     return (
         <div><h1>Home page</h1>
             <ul>
@@ -22,11 +21,10 @@ export const Home = () => {
                     <p>{item.text}</p>
                     <ul>
                         {item.tags.map((tag, idx) => <li key={idx}><p>{tag}</p></li>)}
-                        <p>{ item.viewsCount}</p>
-                        </ul>
-            </li>))}    
+                        <p>{item.viewsCount}</p>
+                    </ul>
+                </li>))}
             </ul>
-            
         </div>
-    )
-}
+    );
+};

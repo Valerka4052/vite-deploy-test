@@ -31,14 +31,6 @@ export const postSlise = createSlice({
            state.posts.status = 'error';
             state.posts.items = [];
     })
-    //     builder.addCase(ferchPosts.fulfilled, (state, action) => {
-    //   state.statusByName[action.meta.arg] = 'fulfilled'
-    //   state.dataByName[action.meta.arg] = action.payload
-    // })
-    //    builder.addCase(ferchPosts.rejected, (state, action) => {
-    //   state.statusByName[action.meta.arg] = 'rejected'
-    // })
   },
 })
 
-// export const postSlise.reducer
