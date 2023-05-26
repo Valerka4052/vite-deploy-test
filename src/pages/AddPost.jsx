@@ -34,7 +34,6 @@ export const AddPost = () => {
             formData.append('imageURL', e.target.files[0]);
             const data = await axios.post('/uploads', formData);
             setImage(`http://localhost:4444/${data.data.path}`);
-            // console.log(data.data.path);
         } catch (error) {
             console.log(error);
         }

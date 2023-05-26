@@ -25,8 +25,8 @@ export const Home = () => {
                     <ul>
                         {item.tags.map((tag, idx) => <li key={idx}><p>{tag}</p></li>)}
                         <p>{item.viewsCount}</p>
-                        <button disabled={data?.id !== item.user._id} onClick={() => dispatch(deletePost(item._id))} >delete Post</button>
-                        <Link to={`/posts/${item._id}/edit`}  >edit post</Link>
+                        {data?.id === item.user._id && <><button onClick={() => dispatch(deletePost(item._id))} >delete Post</button>
+                            <Link to={`/posts/${item._id}/edit`}  >edit post</Link></>}
                     </ul>
                 </li>))}
             </ul>

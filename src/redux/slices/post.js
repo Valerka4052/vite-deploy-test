@@ -30,13 +30,12 @@ export const postSlise = createSlice({
     })
     builder.addCase(ferchPosts.fulfilled, (state, { payload }) => {
       state.posts.status = 'loaded';
-       state.posts.items = payload;
+      state.posts.items = payload;
     })
     builder.addCase(ferchPosts.rejected, (state) => {
       state.posts.status = 'error';
-      // state.posts.items = [];
     })
-     builder.addCase(deletePost.pending, (state) => {
+    builder.addCase(deletePost.pending, (state) => {
       state.posts.status = 'loading';
     })
     builder.addCase(deletePost.fulfilled, (state, { payload }) => {

@@ -27,8 +27,8 @@ export const Login = () => {
     return (
         <div>
             <form>
-                <label >email<input type="email" value={login.email} onChange={(e)=>hadleEmail(e)} name="email" id="" /></label>
-                <label >password<input type="password" value={login.password} onChange={(e)=>hadlePass(e)} name="password" id="" /></label>
+                <label >email<input placeholder="email" type="email" value={login.email} onChange={(e)=>hadleEmail(e)} name="email" id="" /></label>
+                <label >password<input placeholder="password" type="password" value={login.password} onChange={(e)=>hadlePass(e)} name="password" id="" /></label>
                 <button type="submit" onClick={(e)=>sendLoginData(e)}>login</button>
             </form>
         </div>

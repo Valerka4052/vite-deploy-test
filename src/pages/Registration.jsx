@@ -25,9 +25,9 @@ export const Registration = () => {
     return (
         <div>
             <form>
-                <label >name<input onChange={(e)=>hadleName(e)} value={register.fullName} type="text" name="name" id="" /></label>
-                <label >email<input onChange={(e)=>hadleEmail(e)} value={register.email} type="email" name="email" id="" /></label>
-                <label >password<input onChange={(e)=>hadlePass(e)} value={register.password} type="password" name="password" id="" /></label>
+                <label >name<input placeholder="name" onChange={(e)=>hadleName(e)} value={register.fullName} type="text" name="name" id="" /></label>
+                <label >email<input placeholder="email" onChange={(e)=>hadleEmail(e)} value={register.email} type="email" name="email" id="" /></label>
+                <label >password<input placeholder="password" onChange={(e)=>hadlePass(e)} value={register.password} type="password" name="password" id="" /></label>
                 <button type="submit" onClick={(e)=>sendLoginData(e)}>register</button>
             </form>
         </div>
