@@ -8,7 +8,7 @@ import store from './redux/store.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-    <BrowserRouter basename='vite-deploy-test' >
+    <BrowserRouter >
       <Provider store={store}>
         <App />
         </Provider>
