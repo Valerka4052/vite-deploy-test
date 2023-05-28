@@ -1,35 +1,33 @@
-import { useEffect } from "react";
-// import axios from "../axios";
+
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost, ferchPosts } from "../redux/slices/post";
-import { Link } from "react-router-dom";
+import { Box, Pagination} from "@mui/material";
+import { Post } from "../components/Post";
+import { useEffect, useState } from "react";
+import { ferchPosts } from "../redux/slices/post";
 
+const itemsPerPage = 6;
 export const Home = () => {
-    const { items } = useSelector(state => state.posts.posts);
-    const { data } = useSelector(state => state.auth);
-    console.log('items',items);
-  
-    const dispatch = useDispatch()
+    const { items, postsArrayLength } = useSelector(state => state.posts.posts);
+    const [page, setPage] = useState(1);
+    const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(ferchPosts());
-    }, [dispatch]);
+        dispatch(ferchPosts({ page: page, itemsPerPage }));
+    }, [dispatch, page]);
 
-    if (!items) return <h1>Loading...</h1>
+    const hadlePage = (event, value) => {
+        setPage(value);
+    };
+    const totalPages = Math.ceil(postsArrayLength / itemsPerPage);
+    if (!items) return
+
     return (
-        <div><h1>Home page</h1>
-            <ul>
-                {items.map(item => (<li key={item._id}>
-                    <div><img src={item.imageURL} alt={item.title} /></div>
-                    <Link to={`/posts/${item._id}`}><b>{item.title}</b></Link>
-                    <p>{item.text}</p>
-                    <ul>
-                        {item.tags.map((tag, idx) => <li key={idx}><p>{tag}</p></li>)}
-                        <p>{item.viewsCount}</p>
-                        {data?.id === item.user._id && <><button onClick={() => dispatch(deletePost(item._id))} >delete Post</button>
-                            <Link to={`/posts/${item._id}/edit`}  >edit post</Link></>}
-                    </ul>
-                </li>))}
-            </ul>
-        </div>
+        <Box>
+            <Box style={{ width: '100%', display: 'flex', flexDirection: 'row',flexWrap:'wrap', alignItems: 'center', justifyContent: 'center', gap: 30, paddingTop: 30 }}>
+                {items.map(item => (<Post item={item} key={item._id} />))}
+            </Box>
+            <Box sx={{ mt: 4, mb: 4, display: "flex", flexDirection: "column", alignItems: "center", }} >
+                <Pagination count={totalPages} onChange={hadlePage} page={page} variant="outlined" color="secondary" > </Pagination>
+            </Box>
+        </Box>
     );
 };

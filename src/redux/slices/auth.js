@@ -4,18 +4,15 @@ import axios from '../../axios';
 export const fetchUser = createAsyncThunk('auth/fetchUser', async (params) => {
     console.log('params',params);
     const { data } = await axios.post('/auth/login', params);
-    // console.log(data);
     return data
 });
 export const registerUser = createAsyncThunk('auth/registerUser', async (params) => {
     console.log('params',params);
     const { data } = await axios.post('/auth/register', params);
-    // console.log('data', data);
     return data
 });
 export const authMe = createAsyncThunk('auth/refreshUser', async () => {
     const { data } = await axios.get('/auth/me');
-    // console.log('data', data);
     return data
 });
 

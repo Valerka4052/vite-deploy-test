@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from '../../axios'
 
-export const ferchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-    const { data } = await axios.get('/posts');
-    return data
+export const ferchPosts = createAsyncThunk('posts/fetchPosts', async ({page, itemsPerPage}) => {
+  const { data } = await axios.get('/posts', { params: { page: page, limit: itemsPerPage } });
+  console.log('postData ===>', data);
+  return data
 });
 export const deletePost = createAsyncThunk('posts/deletePosts', async (id) => {
   const { data } = await axios.delete(`/posts/${id}`);
@@ -16,6 +17,7 @@ export const postSlise = createSlice({
   initialState: {
     posts: {
       items: [],
+      postsArrayLength:0,
       status: 'loadig',
     },
     tags: {
@@ -30,7 +32,8 @@ export const postSlise = createSlice({
     })
     builder.addCase(ferchPosts.fulfilled, (state, { payload }) => {
       state.posts.status = 'loaded';
-      state.posts.items = payload;
+      state.posts.items = payload.data;
+      state.posts.postsArrayLength = payload.count;
     })
     builder.addCase(ferchPosts.rejected, (state) => {
       state.posts.status = 'error';

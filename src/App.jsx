@@ -3,17 +3,20 @@ import './App.css'
 import { Header } from './components/Header'
 
 import { FullPost, Login, Home, Registration ,AddPost} from './pages/index'
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useEffect } from 'react';
 import { authMe } from './redux/slices/auth';
+
+
+
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(authMe())
+    dispatch(authMe());
   }, [dispatch]);
 
   return (
-
     <>
       <Header />
       <div>
@@ -30,4 +33,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
